@@ -23,7 +23,7 @@ struct Palette
     static inline const juce::Colour accentRed      { 0xffd93226 };
 };
 
-inline juce::Font makeFont(float heightPx, bool bold = false, bool serif = false)
+inline juce::Font makeFont(float heightPx, bool bold = false, bool = false)
 {
    const juce::FontOptions opts(heightPx);
    const juce::Font f(opts);
@@ -64,8 +64,7 @@ inline void drawSubPanel(juce::Graphics& g, juce::Rectangle<float> bounds, const
     g.drawRoundedRectangle(bounds, 7.0f, 1.5f);
 
     g.setColour(Palette::panelTrim.withAlpha(0.55f));
-  (void)serif;
-    g.drawRoundedRectangle(bounds.reduced(1.5f), 6.0f, 1.0f);
+      g.drawRoundedRectangle(bounds.reduced(1.5f), 6.0f, 1.0f);
 
     const float inset = 11.5f;
     drawMachinedScrew(g, bounds.getX() + inset,     bounds.getY() + inset,      4.4f);
