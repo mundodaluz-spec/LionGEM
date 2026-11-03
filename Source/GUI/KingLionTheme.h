@@ -25,7 +25,6 @@ struct Palette
 
 inline juce::Font makeFont(float heightPx, bool bold = false, bool serif = false)
 {
-  (void)serif;
    const juce::FontOptions opts(heightPx);
    const juce::Font f(opts);
    return bold ? f.boldened() : f;
