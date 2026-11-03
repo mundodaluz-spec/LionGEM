@@ -1,0 +1,11 @@
+Copyright (c) 2026 WYATT Sounds. All rights reserved.
+
+Nota sobre dependencias de compilacao:
+Este projeto utiliza o framework JUCE 8 (https://github.com/juce-framework/JUCE).
+Ao distribuir binarios compilados comercialmente ou gratuitamente, observe os termos da
+licenca JUCE 8 (JUCE Starter / Indie / Pro ou GPLv3, conforme aplicavel ao seu modelo de distribuicao)
+e os termos do Avid AAX SDK para distribuicao de arquivos .aaxplugin.
+
+Todas as marcas de terceiros citadas na documentacao tecnica servem exclusivamente como
+referencia de topologia historica de audio; o codigo-fonte, identidade visual, brasao e DSP
+do KingLion Box 1.0 sao 100% originais da WYATT Sounds.
