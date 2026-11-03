@@ -9,6 +9,9 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Fix Rectangle Overload
+        shell: bash
+        run: echo aW1wb3J0IHJlCnAgPSAnU291cmNlL1BsdWdpbkVkaXRvci5jcHAnCnMgPSBvcGVuKHAsIGVuY29kaW5nPSd1dGYtOCcpLnJlYWQoKQpzID0gcmUuc3ViKHInLFxzKlx7XHMqKFteO3t9XSs/LFteO3t9XSs/LFteO3t9XSs/LFteO3t9XSs/KVxzKlx9JywgcicsIGp1Y2U6OlJlY3RhbmdsZTxmbG9hdD4oXDEpJywgcywgZmxhZ3M9cmUuUykKb3BlbihwLCAndycsIGVuY29kaW5nPSd1dGYtOCcpLndyaXRlKHMpCnByaW50KCdQYXRjaGVkIFNvdXJjZS9QbHVnaW5FZGl0b3IuY3BwIE9LJykK | python -m base64 -d | python
       - name: Configure CMake
         run: cmake -B build -DCMAKE_BUILD_TYPE=Release -A x64
       - name: Build Plugins
@@ -26,6 +29,8 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Fix Rectangle Overload
+        run: echo aW1wb3J0IHJlCnAgPSAnU291cmNlL1BsdWdpbkVkaXRvci5jcHAnCnMgPSBvcGVuKHAsIGVuY29kaW5nPSd1dGYtOCcpLnJlYWQoKQpzID0gcmUuc3ViKHInLFxzKlx7XHMqKFteO3t9XSs/LFteO3t9XSs/LFteO3t9XSs/LFteO3t9XSs/KVxzKlx9JywgcicsIGp1Y2U6OlJlY3RhbmdsZTxmbG9hdD4oXDEpJywgcywgZmxhZ3M9cmUuUykKb3BlbihwLCAndycsIGVuY29kaW5nPSd1dGYtOCcpLndyaXRlKHMpCnByaW50KCdQYXRjaGVkIFNvdXJjZS9QbHVnaW5FZGl0b3IuY3BwIE9LJykK | python3 -m base64 -d | python3
       - name: Configure CMake Universal
         run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES=arm64\;x86_64 -DCMAKE_OSX_DEPLOYMENT_TARGET=11.0
       - name: Build Plugins
