@@ -25,13 +25,11 @@ struct Palette
 
 inline juce::Font makeFont(float heightPx, bool bold = false, bool serif = false)
 {
-    auto opts = juce::FontOptions(heightPx)
-                    .withStyleFlags(bold ? juce::Font::bold : juce::Font::plain);
-
-    if (serif)
-        opts = opts.withName("Georgia");
-
-    return juce::Font(opts);
+  (void)serif;
+   const juce::FontOptions opts(heightPx);
+   const juce::Font f(opts);
+   return bold ? f.boldened() : f;
+    
 }
 
 inline void drawMachinedScrew(juce::Graphics& g, float cx, float cy, float radius)
@@ -67,6 +65,7 @@ inline void drawSubPanel(juce::Graphics& g, juce::Rectangle<float> bounds, const
     g.drawRoundedRectangle(bounds, 7.0f, 1.5f);
 
     g.setColour(Palette::panelTrim.withAlpha(0.55f));
+  (void)serif;
     g.drawRoundedRectangle(bounds.reduced(1.5f), 6.0f, 1.0f);
 
     const float inset = 11.5f;
@@ -148,7 +147,7 @@ inline void drawGoldenLionMedallion(juce::Graphics& g, float cx, float cy, float
     g.setGradientFill(lionGrad);
     g.fillPath(face.createPathWithRoundedCorners(2.0f));
 
-    g.setColour(juce::Colour(0xff231707))
+    g.setColour(juce::Colour(0xff231707));
     juce::Path featuresPath;
     featuresPath.addTriangle(cx - s * 0.48f, cy - s * 0.18f, cx - s * 0.14f, cy - s * 0.06f, cx - s * 0.36f, cy - s * 0.30f);
     featuresPath.addTriangle(cx + s * 0.48f, cy - s * 0.18f, cx + s * 0.14f, cy - s * 0.06f, cx + s * 0.36f, cy - s * 0.30f);
