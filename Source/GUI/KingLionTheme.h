@@ -148,10 +148,12 @@ inline void drawGoldenLionMedallion(juce::Graphics& g, float cx, float cy, float
     g.setGradientFill(lionGrad);
     g.fillPath(face.createPathWithRoundedCorners(2.0f));
 
-    g.setColour(juce::Colour(0xff231707));
-    g.fillTriangle(cx - s * 0.48f, cy - s * 0.18f, cx - s * 0.14f, cy - s * 0.06f, cx - s * 0.36f, cy - s * 0.30f);
-    g.fillTriangle(cx + s * 0.48f, cy - s * 0.18f, cx + s * 0.14f, cy - s * 0.06f, cx + s * 0.36f, cy - s * 0.30f);
-    g.fillTriangle(cx - s * 0.20f, cy + s * 0.22f, cx + s * 0.20f, cy + s * 0.22f, cx, cy + s * 0.44f);
+    g.setColour(juce::Colour(0xff231707))
+    juce::Path featuresPath;
+    featuresPath.addTriangle(cx - s * 0.48f, cy - s * 0.18f, cx - s * 0.14f, cy - s * 0.06f, cx - s * 0.36f, cy - s * 0.30f);
+    featuresPath.addTriangle(cx + s * 0.48f, cy - s * 0.18f, cx + s * 0.14f, cy - s * 0.06f, cx + s * 0.36f, cy - s * 0.30f);
+    featuresPath.addTriangle(cx - s * 0.20f, cy + s * 0.22f, cx + s * 0.20f, cy + s * 0.22f, cx, cy + s * 0.44f);
+    g.fillPath(featuresPath);;
     g.drawLine(cx, cy + s * 0.44f, cx, cy + s * 0.68f, 1.4f);
     g.drawLine(cx - s * 0.24f, cy + s * 0.68f, cx + s * 0.24f, cy + s * 0.68f, 1.3f);
 }
