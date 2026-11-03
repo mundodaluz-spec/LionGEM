@@ -1,1 +1,53 @@
-{"name": "Build KingLion Box 1.0 Installers", "on": {"push": {"branches": ["main", "master"]}, "workflow_dispatch": null}, "jobs": {"build-windows": {"runs-on": "windows-latest", "steps": [{"uses": "actions/checkout@v4"}, {"name": "Configure CMake", "run": "cmake -B build -DCMAKE_BUILD_TYPE=Release -A x64"}, {"name": "Build Plugins", "run": "cmake --build build --config Release --parallel"}, {"name": "Test DSP", "run": "ctest --test-dir build -C Release --output-on-failure"}, {"name": "Build Windows EXE Installer", "shell": "pwsh", "run": "New-Item -ItemType Directory -Force -Path staging/VST3, staging/Standalone, dist/Windows_Installer | Out-Null; Copy-Item -Recurse -Force \"build/KingLionBox_artefacts/Release/VST3/*\" staging/VST3/; Copy-Item -Recurse -Force \"build/KingLionBox_artefacts/Release/Standalone/*\" staging/Standalone/; & \"C:\\Program Files (x86)\\Inno Setup 6\\ISCC.exe\" installer/windows/KingLionBox.iss"}, {"uses": "actions/upload-artifact@v4", "with": {"name": "Instalador-Windows-x64", "path": "dist/Windows_Installer/*.exe"}}]}, "build-macos": {"runs-on": "macos-latest", "steps": [{"uses": "actions/checkout@v4"}, {"name": "Configure CMake Universal", "run": "cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES=\"arm64;x86_64\" -DCMAKE_OSX_DEPLOYMENT_TARGET=\"11.0\""}, {"name": "Build Plugins", "run": "cmake --build build --config Release --parallel"}, {"name": "Test DSP", "run": "ctest --test-dir build -C Release --output-on-failure"}, {"name": "Build macOS PKG and DMG Installers", "run": "tr -d '\\r' < installer/macos/build_macos_installer.sh > build_mac.sh && chmod +x build_mac.sh && ./build_mac.sh \"build/KingLionBox_artefacts/Release\" \"dist/macOS_Installer\""}, {"uses": "actions/upload-artifact@v4", "with": {"name": "Instalador-macOS-Universal", "path": "dist/macOS_Installer/*"}}]}, "pacote-final": {"needs": ["build-windows", "build-macos"], "runs-on": "ubuntu-latest", "steps": [{"uses": "actions/download-artifact@v4", "with": {"path": "pacote_final"}}, {"uses": "actions/upload-artifact@v4", "with": {"name": "Build KingLion Box 1.0 Installers", "on": {"push"{"name": "Build KingLion Box 1.0 Installers", "on": {"push": {"branches": ["main", "master"]}, "workflow_dispatch": null}, "jobs": {"build-windows": {"runs-on": "windows-latest", "steps": [{"uses": "actions/checkout@v4"}, {"name": "Configure CMake", "run": "cmake -B build -DCMAKE_BUILD_TYPE=Release -A x64"}, {"name": "Build Plugins", "run": "cmake --build build --config Release --parallel"}, {"name": "Test DSP", "run": "ctest --test-dir build -C Release --output-on-failure"}, {"name": "Build Windows EXE Installer", "shell": "pwsh", "run": "New-Item -ItemType Directory -Force -Path staging/VST3, staging/Standalone, dist/Windows_Installer | Out-Null; Copy-Item -Recurse -Force \"build/KingLionBox_artefacts/Release/VST3/*\" staging/VST3/; Copy-Item -Recurse -Force \"build/KingLionBox_artefacts/Release/Standalone/*\" staging/Standalone/; & \"C:\\Program Files (x86)\\Inno Setup 6\\ISCC.exe\" installer/windows/KingLionBox.iss"}, {"uses": "actions/upload-artifact@v4", "with": {"name": "Instalador-Windows-x64", "path": "dist/Windows_Installer/*.exe"}}]}, "build-macos": {"runs-on": "macos-latest", "steps": [{"uses": "actions/checkout@v4"}, {"name": "Configure CMake Universal", "run": "cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES=\"arm64;x86_64\" -DCMAKE_OSX_DEPLOYMENT_TARGET=\"11.0\""}, {"name": "Build Plugins", "run": "cmake --build build --config Release --parallel"}, {"name": "Test DSP", "run": "ctest --test-dir build -C Release --output-on-failure"}, {"name": "Build macOS PKG and DMG Installers", "run": "tr -d '\\r' < installer/macos/build_macos_installer.sh > build_mac.sh && chmod +x build_mac.sh && ./build_mac.sh \"build/KingLionBox_artefacts/Release\" \"dist/macOS_Installer\""}, {"uses": "actions/upload-artifact@v4", "with": {"name": "Instalador-macOS-Universal", "path": "dist/macOS_Installer/*"}}]}, "pacote-final": {"needs": ["build-windows", "build-macos"], "runs-on": "ubuntu-latest", "steps": [{"uses": "actions/download-artifact@v4", "with": {"path": "pacote_final"}}, {"uses": "actions/upload-artifact@v4", "with": {"name": "KINGLION-BOX-1.0-INSTALADORES-WINDOWS-E-MAC", "path": "pacote_final"}}}}: {"branches": ["main", "master"]}, "workflow_dispatch": null}, "jobs": {"build-windows": {"runs-on": "windows-latest", "steps": [{"uses": "actions/checkout@v4"}, {"name": "Configure CMake", "run": "cmake -B build -DCMAKE_BUILD_TYPE=Release -A x64"}, {"name": "Build Plugins", "run": "cmake --build build --config Release --parallel"}, {"name": "Test DSP", "run": "ctest --test-dir build -C Release --output-on-failure"}, {"name": "Build Windows EXE Installer", "shell": "pwsh", "run": "New-Item -ItemType Directory -Force -Path staging/VST3, staging/Standalone, dist/Windows_Installer | Out-Null; Copy-Item -Recurse -Force \"build/KingLionBox_artefacts/Release/VST3/*\" staging/VST3/; Copy-Item -Recurse -Force \"build/KingLionBox_artefacts/Release/Standalone/*\" staging/Standalone/; & \"C:\\Program Files (x86)\\Inno Setup 6\\ISCC.exe\" installer/windows/KingLionBox.iss"}, {"uses": "actions/upload-artifact@v4", "with": {"name": "Instalador-Windows-x64", "path": "dist/Windows_Installer/*.exe"}}]}, "build-macos": {"runs-on": "macos-latest", "steps": [{"uses": "actions/checkout@v4"}, {"name": "Configure CMake Universal", "run": "cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES=\"arm64;x86_64\" -DCMAKE_OSX_DEPLOYMENT_TARGET=\"11.0\""}, {"name": "Build Plugins", "run": "cmake --build build --config Release --parallel"}, {"name": "Test DSP", "run": "ctest --test-dir build -C Release --output-on-failure"}, {"name": "Build macOS PKG and DMG Installers", "run": "tr -d '\\r' < installer/macos/build_macos_installer.sh > build_mac.sh && chmod +x build_mac.sh && ./build_mac.sh \"build/KingLionBox_artefacts/Release\" \"dist/macOS_Installer\""}, {"uses": "actions/upload-artifact@v4", "with": {"name": "Instalador-macOS-Universal", "path": "dist/macOS_Installer/*"}}]}, "pacote-final": {"needs": ["build-windows", "build-macos"], "runs-on": "ubuntu-latest", "steps": [{"uses": "actions/download-artifact@v4", "with": {"path": "pacote_final"}}, {"uses": "ac{"name": "Build KingLion Box 1.0 Installers", "on": {"push": {"branches": ["main", "master"]}, "workflow_dispatch": null}, "jobs": {"build-windows": {"runs-on": "windows-latest", "steps": [{"uses": "actions/checkout@v4"}, {"name": "Configure CMake", "run": "cmake -B build -DCMAKE_BUILD_TYPE=Release -A x64"}, {"name": "Build Plugins", "run": "cmake --build build --config Release --parallel"}, {"name": "Test DSP", "run": "ctest --test-dir build -C Release --output-on-failure"}, {"name": "Build Windows EXE Installer", "shell": "pwsh", "run": "New-Item -ItemType Directory -Force -Path staging/VST3, staging/Standalone, dist/Windows_Installer | Out-Null; Copy-Item -Recurse -Force \"build/KingLionBox_artefacts/Release/VST3/*\" staging/VST3/; Copy-Item -Recurse -Force \"build/KingLionBox_artefacts/Release/Standalone/*\" staging/Standalone/; & \"C:\\Program Files (x86)\\Inno Setup 6\\ISCC.exe\" installer/windows/KingLionBox.iss"}, {"uses": "actions/upload-artifact@v4", "with": {"name": "Instalador-Windows-x64", "path": "dist/Windows_Installer/*.exe"}}]}, "build-macos": {"runs-on": "macos-latest", "steps": [{"uses": "actions/checkout@v4"}, {"name": "Configure CMake Universal", "run": "cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES=\"arm64;x86_64\" -DCMAKE_OSX_DEPLOYMENT_TARGET=\"11.0\""}, {"name": "Build Plugins", "run": "cmake --build build --config Release --parallel"}, {"name": "Test DSP", "run": "ctest --test-dir build -C Release --output-on-failure"}, {"name": "Build macOS PKG and DMG Installers", "run": "tr -d '\\r' < installer/macos/build_macos_installer.sh > build_mac.sh && chmod +x build_mac.sh && ./build_mac.sh \"build/KingLionBox_artefacts/Release\" \"dist/macOS_Installer\""}, {"uses": "actions/upload-artifact@v4", "with": {"name": "Instalador-macOS-Universal", "path": "dist/macOS_Installer/*"}}]}, "pacote-final": {"needs": ["build-windows", "build-macos"], "runs-on": "ubuntu-latest", "steps": [{"uses": "actions/download-artifact@v4", "with": {"path": "pacote_final"}}, {"uses": "actions/upload-artifact@v4", "with": {"name": "KINGLION-BOX-1.0-INSTALADORES-WINDOWS-E-MAC", "path": "pacote_final"}}}}tions/upload-artifact@v4", "with": {"name": "KINGLION-BOX-1.0-INSTALADORES-WINDOWS-E-MAC", "path": "pacote_final"}}}}{"name": "KINGLION-BOX-1.0-INSTALADORES-WINDOWS-E-MAC", "path": "pacote_final"}}}}    runs-on: windows-latest
+name: Build KingLion Box 1.0 Installers
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure CMake
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release -A x64
+      - name: Build Plugins
+        run: cmake --build build --config Release --parallel
+      - name: Test DSP
+        run: ctest --test-dir build -C Release --output-on-failure
+      - name: Build Windows EXE Installer
+        shell: pwsh
+        run: New-Item -ItemType Directory -Force -Path staging/VST3, staging/Standalone, dist/Windows_Installer | Out-Null; Copy-Item -Recurse -Force build/KingLionBox_artefacts/Release/VST3/* staging/VST3/; Copy-Item -Recurse -Force build/KingLionBox_artefacts/Release/Standalone/* staging/Standalone/; $iscc = (Get-Item C:/Program*/Inno*/ISCC.exe).FullName; & $iscc installer/windows/KingLionBox.iss
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Instalador-Windows-x64
+          path: dist/Windows_Installer/*.exe
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure CMake Universal
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES=arm64\;x86_64 -DCMAKE_OSX_DEPLOYMENT_TARGET=11.0
+      - name: Build Plugins
+        run: cmake --build build --config Release --parallel
+      - name: Test DSP
+        run: ctest --test-dir build -C Release --output-on-failure
+      - name: Build macOS PKG and DMG Installers
+        run: perl -pe s/\r$// installer/macos/build_macos_installer.sh > build_mac.sh && bash build_mac.sh build/KingLionBox_artefacts/Release dist/macOS_Installer
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Instalador-macOS-Universal
+          path: dist/macOS_Installer/*
+  pacote-final:
+    needs:
+      - build-windows
+      - build-macos
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: pacote_final
+      - uses: actions/upload-artifact@v4
+        with:
+          name: KINGLION-BOX-1.0-INSTALADORES-WINDOWS-E-MAC
+          path: pacote_final
